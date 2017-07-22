@@ -75,6 +75,9 @@
 
         };
         async onLoad() {
+            let rrr = await api.getTest()
+            console.log('4444444')
+            console.dir(rrr)
             try {
                 let res = await api.getVolIdList();
                 console.log(res);

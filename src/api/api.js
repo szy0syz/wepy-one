@@ -17,6 +17,22 @@ const wxRequest = async (params = {}, url) => {
     return res;
 };
 
+const wxRequest1 = async (params = {}, url) => {
+  return new Promise(async (resolve, reject) => {
+    setTimeout(async () => {
+      let res = await wepy.request({
+        url: url,
+        method: params.method || 'GET',
+        data: params.data || {},
+        header: {'Content-Type': 'application/json'},
+      });
+      resolve(res);
+    });
+  })
+};
+
+const getTest = (p) => wxRequest1(p, 'https://www.v2ex.com/api/topics/hot.json') 
+
 // Index
 const getVolById = (params) => wxRequest(params, host + '/api/hp/detail/' + params.query.id);
 const getVolIdList = (params) => wxRequest(params, host + '/api/hp/idlist/0');
@@ -59,5 +75,6 @@ module.exports = {
   getMusicDetailById,
   getMovieListById,
   getMovieDetailById,
-  getMovieStoryById
+  getMovieStoryById,
+  getTest
 };
